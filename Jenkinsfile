@@ -18,7 +18,6 @@ pipeline {
                 echo "This pipeline only runs for PRs targeting 'develop'. Skipping."
                 script {
                     currentBuild.result = 'SUCCESS'
-                    exit 0
                 }
             }
         }
