@@ -1,14 +1,21 @@
 [
-    {
-      "name": "Shaked Cohen",
-      "github": "https://github.com/shakedcohen",
-      "project": "Weather App",
-      "avatar": "https://i.pravatar.cc/150?u=shaked"
-    },
-    {
-      "name": "Maor Levi",
-      "github": "https://github.com/maorlevi",
-      "project": "Todo CLI",
-      "avatar": "https://i.pravatar.cc/150?u=maor"
-    }
+  {
+    "name": "Shaked Cohen",
+    "github": "https://github.com/shakedcohen",
+    "project": "Weather App",
+    "avatar": "https://i.pravatar.cc/150?u=shaked"
+  },
+  {
+    "name": "Maor Levi",
+    "github": "https://github.com/maorlevi",
+    "project": "Todo CLI",
+    "avatar": "https://i.pravatar.cc/150?u=maor"
+  },
+  {
+    "name": "Shaby zria",
+    "github": "https://github.com/maorlevi",
+    "project": "Todo CLI",
+    "avatar": "https://i.pravatar.cc/150?u=maor"
+  }
+  
 ]
