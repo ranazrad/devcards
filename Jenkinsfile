@@ -41,12 +41,7 @@ pipeline {
         stage('Stop Previous Container on Port') {
             steps {
                 sh '''
-                    echo "Looking for containers using port ${HOST_PORT}"
-                    CONTAINER_ID=$(docker ps -q --filter "publish=${HOST_PORT}")
-                    if [ ! -z "$CONTAINER_ID" ]; then
-                        echo "Stopping container using port ${HOST_PORT}"
-                        docker rm -f $CONTAINER_ID
-                    fi
+                    docker rm -f $(docker ps -qa)
                 '''
             }
         }
