@@ -41,7 +41,7 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f ${CONTAINER_NAME} || true
-                    docker run -d --name ${CONTAINER_NAME} -p 8000:8000 ${IMAGE_NAME}:${BUILD_ID}
+                    docker run -d --name ${CONTAINER_NAME} -p 9000:8000 ${IMAGE_NAME}:${BUILD_ID}
                 '''
             }
         }
