@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     triggers {
-        githubPullRequest()  // Trigger on Pull Requests
+        githubPullRequest()  
     }
 
     stages {
         stage('Checkout') {
             steps {
                 script {
-                    if (env.CHANGE_TARGET == 'develop') {  // Only trigger if PR targets 'develop'
+                    if (env.CHANGE_TARGET == 'develop') {  
                         checkout scm
                     } else {
                         error('Pull request is not targeting develop, aborting...')
