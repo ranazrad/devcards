@@ -19,9 +19,7 @@ pipeline {
                 script {
                     currentBuild.result = 'SUCCESS'
                     // Using error() with a message to stop the pipeline with a success status
-                    error("Skipping pipeline as this is not a PR to 'develop'")
-                    // Alternatively, you could use 'return' to exit the script block
-                    // but the subsequent stages might still run
+                   return
                 }
             }
         }
