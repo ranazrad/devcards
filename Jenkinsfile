@@ -16,7 +16,10 @@ pipeline {
                 }
             }
             steps {
-                echo "PR is targeting develop. Proceeding with pipeline."
+                echo "This pipeline only runs for PRs targeting 'develop'. Skipping."
+                script {
+                    currentBuild.result = 'SUCCESS'
+                }
             }
         }
 
