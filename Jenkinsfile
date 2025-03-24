@@ -7,7 +7,6 @@ pipeline {
     }
 
     stages {
-
         stage('Validate PR Target') {
             when {
                 expression {
