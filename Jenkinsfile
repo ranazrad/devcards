@@ -42,8 +42,8 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                // sh '''
-                   echo 'docker rm -f ${CONTAINER_NAME} || true
-                    docker run -d --name ${CONTAINER_NAME} -p 8000:8000 ${IMAGE_NAME}:${BUILD_ID}'
+                   echo 'docker rm -f ${CONTAINER_NAME} || true  docker run -d --name ${CONTAINER_NAME} -p 8000:8000 ${IMAGE_NAME}:${BUILD_ID}'
+                   
               //  '''
             }
         }
