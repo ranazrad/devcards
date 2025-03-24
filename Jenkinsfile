@@ -32,7 +32,7 @@ pipeline {//pr
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    sudo -S docker build -t ${IMAGE_NAME}:${BUILD_ID} .
+                    echo "1234" | sudo -S docker build -t ${IMAGE_NAME}:${BUILD_ID} .
                 '''
             }
         }
