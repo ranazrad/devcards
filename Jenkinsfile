@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    when {
-        changeRequest()
-    }
     stages {
         stage('Test') {
             steps {
