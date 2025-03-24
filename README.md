@@ -14,9 +14,9 @@ Edit `students.json` and add yourself:
 ```json
 {
   "name": "Your Name",
-  "github": "https://github.com/yourname",
+  "github": "https://github.com/or3005",
   "project": "My Cool Script",
-  "avatar": "https://i.pravatar.cc/150?u=yourname"
+  "avatar": "https://i.pravatar.cc/150?u=Or"
 }
 ```
 

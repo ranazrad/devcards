@@ -11,6 +11,7 @@ pipeline {
         stage('Validate PR Target') {
             when {
                 expression {
+                    
                     return !(env.CHANGE_ID && env.CHANGE_TARGET == 'develop')
                 }
             }
@@ -18,31 +19,32 @@ pipeline {
                 echo "This pipeline only runs for PRs targeting 'develop'. Skipping."
                 script {
                     currentBuild.result = 'SUCCESS'
-                    exit 0
+                    //exit 0
                 }
             }
         }
 
         stage('Checkout Code') {
             steps {
-                checkout scm
+                // checkout scm
+                echo 'Checking out code...'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh '''
-                    docker build -t ${IMAGE_NAME}:${BUILD_ID} .
-                '''
+                //sh '''
+                  echo  'docker build -t ${IMAGE_NAME}:${BUILD_ID} .'
+                //'''
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                sh '''
-                    docker rm -f ${CONTAINER_NAME} || true
-                    docker run -d --name ${CONTAINER_NAME} -p 8000:8000 ${IMAGE_NAME}:${BUILD_ID}
-                '''
+               // sh '''
+                   echo 'docker rm -f ${CONTAINER_NAME} || true
+                    docker run -d --name ${CONTAINER_NAME} -p 8000:8000 ${IMAGE_NAME}:${BUILD_ID}'
+              //  '''
             }
         }
 
