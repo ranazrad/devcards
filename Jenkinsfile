@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     triggers {
-        githubPullRequest()  
+        pollSCM('* * * * *')  // Polling every minute. Adjust as needed.
     }
 
     stages {
         stage('Checkout') {
             steps {
                 script {
-                    if (env.CHANGE_TARGET == 'develop') {  
+                    if (env.BRANCH_NAME == 'develop' || env.CHANGE_TARGET == 'develop') {  // Trigger only if targeting 'develop'
                         checkout scm
                     } else {
                         error('Pull request is not targeting develop, aborting...')
