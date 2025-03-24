@@ -30,7 +30,7 @@ pipeline {
             steps {
                 sh '''
                     echo "Building image ${IMAGE_NAME}:${BUILD_ID}"
-                    docker build -t ${IMAGE_NAME}:${BUILD_ID} .
+                    docker build -t ${IMAGE_NAME}:${BUILD_ID} . --no-cache
                 '''
             }
         }
