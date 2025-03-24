@@ -1,52 +1,56 @@
 pipeline {
     agent any
 
-    triggers {
-        pollSCM('* * * * *')  // Polling every minute. Adjust as needed.
+    environment {
+        IMAGE_NAME = 'devcards'
+        CONTAINER_NAME = "devcards-container-${env.BUILD_ID}"
     }
 
     stages {
-        stage('Checkout') {
+
+        stage('Validate PR Target') {
+            when {
+                expression {
+                    return !(env.CHANGE_ID && env.CHANGE_TARGET == 'develop')
+                }
+            }
             steps {
+                echo "This pipeline only runs for PRs targeting 'develop'. Skipping."
                 script {
-                    if (env.BRANCH_NAME == 'develop' || env.CHANGE_TARGET == 'develop') {  // Trigger only if targeting 'develop'
-                        checkout scm
-                    } else {
-                        error('Pull request is not targeting develop, aborting...')
-                    }
+                    currentBuild.result = 'SUCCESS'
+                    exit 0
                 }
             }
         }
 
-        stage('Build') {
+        stage('Checkout Code') {
             steps {
-                sh 'echo Building the project...'
+                checkout scm
             }
         }
 
-        stage('Test') {
+        stage('Build Docker Image') {
             steps {
-                sh 'echo Running tests...'
+                sh '''
+                    docker build -t ${IMAGE_NAME}:${BUILD_ID} .
+                '''
             }
         }
 
-        stage('Deploy') {
+        stage('Run Docker Container') {
             steps {
-                sh 'echo Deploying the project...'
+                sh '''
+                    docker rm -f ${CONTAINER_NAME} || true
+                    docker run -d --name ${CONTAINER_NAME} -p 8000:8000 ${IMAGE_NAME}:${BUILD_ID}
+                '''
             }
         }
+
     }
 
     post {
         always {
-            echo 'Cleaning up...'
-            cleanWs()
-        }
-        success {
-            echo 'Build completed successfully!'
-        }
-        failure {
-            echo 'Build failed. Please check the logs.'
+            echo 'Pipeline execution completed.'
         }
     }
 }
