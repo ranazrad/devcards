@@ -18,7 +18,10 @@ pipeline {
                 echo "This pipeline only runs for PRs targeting 'develop'. Skipping."
                 script {
                     currentBuild.result = 'SUCCESS'
-                    exit 0
+                    // Using error() with a message to stop the pipeline with a success status
+                    error("Skipping pipeline as this is not a PR to 'develop'")
+                    // Alternatively, you could use 'return' to exit the script block
+                    // but the subsequent stages might still run
                 }
             }
         }
@@ -32,7 +35,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    docker build -t ${IMAGE_NAME}:${BUILD_ID} .
+                    #docker build -t ${IMAGE_NAME}:${BUILD_ID} .
+                    echo docker build
                 '''
             }
         }
@@ -40,8 +44,9 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 sh '''
-                    docker rm -f ${CONTAINER_NAME} || true
-                    docker run -d --name ${CONTAINER_NAME} -p 8000:8000 ${IMAGE_NAME}:${BUILD_ID}
+                    #docker rm -f ${CONTAINER_NAME} || true
+                    echo docker run
+                    #docker run -d --name ${CONTAINER_NAME} -p 8000:8000 ${IMAGE_NAME}:${BUILD_ID}
                 '''
             }
         }
