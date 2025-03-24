@@ -12,9 +12,17 @@
       "avatar": "https://i.pravatar.cc/150?u=maor"
     },
     {
-      "name": "Oleg Ulukov",
-      "github": "https://github.com/olego700",
-      "project": "ceo cto",
-      "avatar": "https://i.pravatar.cc/150?u=Oleg"
+
+      "name": "Moshe Zuchmir",
+      "github": "https://github.com/moshezuch",
+      "project": "Airforce",
+      "avatar": "https://i.pravatar.cc/150?u=moshe"
+    },
+    {
+      "name": "Anna Lev",
+      "github": "https://github.com/annalev",
+      "project": "Airforce",
+      "avatar": "https://i.pravatar.cc/150?u=anna"
+
     }
 ]
