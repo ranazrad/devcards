@@ -31,18 +31,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh '''
-                    docker build -t ${IMAGE_NAME}:${BUILD_ID} .
-                '''
+                sh echo 'jessica'
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                sh '''
-                    docker rm -f ${CONTAINER_NAME} || true
-                    docker run -d --name ${CONTAINER_NAME} -p 8000:8000 ${IMAGE_NAME}:${BUILD_ID}
-                '''
+                sh echo 'jessica'
             }
         }
 
